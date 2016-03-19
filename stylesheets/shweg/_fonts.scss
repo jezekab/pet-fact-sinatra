@@ -1,0 +1,49 @@
+/* Fonts SCSS
+ *
+ * Fonts SCSS describes the font families for the stylesheets. These
+ * have been chosen from the official Code Network design style guide.
+ *
+ * Fonts we use:
+ *  - Montserrat
+ *  - Hack
+ *
+ * Created by: Byron Mejia
+ * Contributors: Me
+ *
+ */
+//noinspection CssUnknownTarget
+@import "colours";
+
+// Montserrat - Our Primary Font
+@import url(https://fonts.googleapis.com/css?family=Montserrat:400,700);
+$Primary: 'Montserrat', sans-serif;
+
+// Hack - Our 'Code' Font
+@import url(http://cdn.jsdelivr.net/font-hack/2.019/css/hack-extended.min.css);
+$Code: Hack, monospace;
+
+/* Code Variable
+ *
+ * Code Variable allows for us to be using the 'code' variable, if we need to drop into
+ * 'Code' in our html. We can use the span tags to quickly change markup.
+ *
+ * todo: Surely there is a better way to do this. I can't css....
+ */
+span.code-variable{
+  font-family: $Code;
+  color: $green;
+}
+
+
+html, body {
+  font-family: $Primary;
+  color: $light-grey;
+}
+
+h1 {
+
+}
+
+h2 {
+
+}

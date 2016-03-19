@@ -1,0 +1,67 @@
+/* topNav SCSS
+ *
+ * Anything that has anything to do with Navigation should go here. Actually, only the topbar should go here.
+ *
+ * Created by: Byron Mejia
+ * Contributors:
+ *
+ */
+@import "colours";
+$navbar-height: 50px !default;
+$navbar-hack-height: 47px;
+
+.navbar{
+  position: relative;
+  width: 100%;
+  min-height: $navbar-height;
+}
+
+.navbar-fixed-top {
+  position: fixed;
+  top: 0;
+}
+
+.nav-pad{
+  padding-top: $navbar-height;
+}
+
+.nav-blur{
+  z-index: -50;
+  top: 0;
+  position: fixed;
+  min-width: 100%;
+  min-height: $navbar-hack-height;
+  background-color: $charcoal-60;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  width: 100%;
+}
+
+li.nav {
+  float: right;
+}
+
+li.nav-left {
+  float: left;
+}
+
+li a.nav {
+  display: block;
+  color: $light-grey;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+a.nav:hover:not(.active) {
+  background-color: $grey;
+}
+
+.active {
+  background-color: $grey;
+}

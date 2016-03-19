@@ -7,8 +7,9 @@ ruby '2.3.0'
 gem 'sinatra'
 gem 'sinatra-contrib'
 
-# ---------- SLIM ------------
+# -------- DESIGN ------------
 gem 'slim'
+gem 'sass'
 
 # -------- Database ----------
 # Because storage

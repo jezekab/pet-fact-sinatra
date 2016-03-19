@@ -1,0 +1,30 @@
+@import "colours";
+.paged{
+  height: 100vh;
+  &.amazing{
+    text-align: center;
+  }
+  &.secondary{
+    background-color: $light-grey;
+    color: $charcoal;
+  }
+}
+
+.paged-center{
+  padding-top: 12vh;
+  &.statement{
+    padding-top: 17vh;
+  }
+}
+
+.centerize{
+  width: 75%;
+  height: auto;
+  margin: 0 auto;
+  padding: 10px;
+  position: relative;
+  &.form{
+    width: 400px;
+    max-width: 90%;
+  }
+}

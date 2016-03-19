@@ -1,5 +1,10 @@
 class PetFacts < Sinatra::Application
   get '/' do
-    'Pet Facts'
+    slim :index
   end
+
+  get('/style.css') do
+    scss :'../stylesheets/style'
+  end
+
 end

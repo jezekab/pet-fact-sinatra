@@ -1,4 +1,7 @@
 require 'sinatra'
+require 'stripe'
+require 'slim'
+require 'sass'
 require 'mongoid'
 require 'twilio-ruby'
 
@@ -10,6 +13,17 @@ class PetFacts < Sinatra::Application
 
   # Load Twilio
   client = Twilio::REST::Client.new ENV['TWIL_ACC_SID'], ENV['TWIL_AUTH']
+
+  # Load Stripe
+  set :publishable_key, ENV['STRIPE_PUB']
+  set :secret_key, ENV['STRIPE_SECRET']
+
+  Stripe.api_key = settings.secret_key
+
+  configure :production do
+    set :clean_trace, true
+
+  end
 
   get '/pet-fact' do
     if params[:key] == ENV['MASTER_KEY']

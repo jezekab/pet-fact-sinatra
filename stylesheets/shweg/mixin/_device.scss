@@ -1,0 +1,25 @@
+$dev-xs: 320px;
+$dev-sm: 480px;
+$dev-md: 768px;
+$dev-lg: 960px;
+
+$break-small: 320px;
+$break-large: 1024px;
+
+@mixin respond-to($media) {
+  @if $media == xs {
+    @media only screen and (max-width: $dev-xs) { @content; }
+  }
+  @else if $media == sm {
+    @media only screen and (max-width: $dev-sm) { @content; }
+  }
+  @else if $media == md {
+    @media only screen and (max-width: $dev-md) { @content; }
+  }
+  @else if $media == lg {
+    @media only screen and (max-width: $dev-lg) { @content; }
+  }
+  @else if $media == xl {
+    @media only screen and (min-width: $dev-lg + 1) { @content; }
+  }
+}

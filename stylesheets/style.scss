@@ -1,0 +1,70 @@
+/* Shweg SCSS
+ *
+ * The schweg SCSS file will help anyone who needs more shweg on their website, to follow the CodeNetwork
+ * design style guide. This includes: font families, padding, colours and logo placement.
+ *
+ * More information on the CodeNetwork style guide can be found here:
+ * todo: place link to StyleGuide
+ * todo: Add a real cool README.md
+ *
+ */
+
+@import "shweg/imports";
+
+// Begin stuff here
+// todo: Write SASS
+head {
+  display: none;
+}
+
+html, body {
+  display: block;
+  background-color: $charcoal;
+  margin:0;
+  padding:0;
+  width:100%;
+}
+
+div.wrapper {
+  min-height: 65vh;
+}
+
+footer {
+
+}
+
+.container{
+  margin: auto;
+  width: 800px;
+  max-width: 90%;
+  &.front-logo{
+    width: 600px;
+    max-width: 80%;
+  }
+}
+
+.breath{
+  padding-top: 50px;
+  padding-bottom: 10px;
+  &.bottom{
+    padding-top: 10px;
+    padding-bottom: 20px;
+  }
+}
+
+.social{
+  font-size: 30px;
+  padding: 10px;
+  color: $light-grey;
+  &:visited{
+    color: $light-grey;
+  }
+  &:hover {
+    color: $green;
+  }
+
+}
+
+div {
+  display: block;
+}
