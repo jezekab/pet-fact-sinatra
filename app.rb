@@ -29,7 +29,7 @@ class PetFacts < Sinatra::Application
         client.account.messages.create(
             :from => ENV['TWIL_ID'],
             :to => params[:number],
-            :body => "#{fact} - http://www.pet-facts.co"
+            :body => "#{fact} - https://www.pet-facts.co"
         )
         'Success, we think'
       else
@@ -55,7 +55,7 @@ class PetFacts < Sinatra::Application
     puts 'whiskey'
 
     Stripe::Charge.create(
-        :amount => 400,
+        :amount => 20,
         :currency => "aud",
         :source => params[:stripeToken], # obtained with Stripe.js
         :description => "Charge for test@example.com"
