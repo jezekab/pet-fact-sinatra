@@ -61,7 +61,7 @@ class PetFacts < Sinatra::Application
         :description => "Charge for test@example.com"
     )
 
-    open("http://www.pet-facts.co//pet-fact?key=#{ENV['MASTER_KEY']}&number=#{params[:number]}")
+    open("https://www.pet-facts.co//pet-fact?key=#{ENV['MASTER_KEY']}&number=#{params[:number]}")
 
     "Message Complete"
 
