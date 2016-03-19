@@ -8,6 +8,10 @@ require 'twilio-ruby'
 class PetFacts < Sinatra::Application
   disable :sessions
 
+  def is_number?(i)
+    true if Integer(i) rescue false
+  end
+
   # Load Mongoid
   Mongoid.load!('./config/mongoid.yml', :ENV['RACK_ENV'])
 

@@ -1,0 +1,70 @@
+javascript:
+  // This identifies your website in the createToken call below
+  Stripe.setPublishableKey("#{ENV['STRIPE_PUB']}");
+  $(document).ready(function () {
+    $("#payment-form").submit(function (event) {
+      // disable the submit button to prevent repeated clicks
+      $('.submit-button').attr("disabled", "disabled");
+      Stripe.createToken({
+        number: $('.card-number').val(),
+        cvc: $('.card-cvc').val(),
+        exp_month: $('.card-expiry-month').val(),
+        exp_year: $('.card-expiry-year').val()
+      }, stripeResponseHandler);
+      function stripeResponseHandler(status, response) {
+        if (response.error) {
+          alert("error");
+          // show the errors on the form
+          $(".payment-errors").text(response.error.message);
+          // re-enable the submit button after error
+          $('.submit-button').removeAttr('disabled');
+        } else {
+          var form$ = $("#payment-form");
+          // token contains id, last4, and card type
+          var token = response['id'];
+          // insert the token into the form so it gets submitted to the server
+          form$.append("<input type='hidden' name='stripeToken' value='" + token + "'/>");
+          // and submit
+          form$.get(0).submit();
+        }
+      }
+
+      // prevent the form from submitting with the default action
+      return false;
+    });
+  });
+
+section
+  div.container
+    h1 Thank you
+    p Your card will be changed $0.20 AUD for this fact.
+    p Thank you for helping us educate your friends.
+
+    form action="payment" method="POST" id="payment0form"
+      span class="payment-errors"
+
+      div.form-group
+        label for="number" Phone Number
+        input.form-control type="text" size="11" id="number" name="number" placeholder="61404040404"
+
+      div.form-group
+        label
+          span Card Number (4242424242424242)
+        input.form-control type="text" size="20" autocomplete="off" class="card-number"
+
+      div.form-group
+        label
+          span CVC (123)
+        input.form-control type="text" size="4" autocomplete="off" class="card-cvc"
+
+      div.form-group
+        label
+          span Month (MM)
+        input.form-control type="text" size="2" class="card-expiry-month"
+
+      div.form-group
+        label
+          span Year (YY)
+        input.form-control type="text" size="4" class="card-expiry-year"
+
+      button.btn.btn-default type="sumbit" Submit
