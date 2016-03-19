@@ -11,22 +11,14 @@ class PetFacts < Sinatra::Application
 
   post '/payment' do
     @amount = 20
+    @charge = Stripe::Charge.create(
+        :amount => @amount,
+        :currency => "aud",
+        :card => params[:stripeToken],
+        :description => "Pet Facts"
+    )
 
-    if true
-      @charge = Stripe::Charge.create(
-          :amount => @amount,
-          :currency => "aud",
-          :card => params[:stripeToken],
-          :description => "Pet Facts"
-      )
-      puts params[:number]
-      str = open("http://www.pet-facts.co/pet-fact?key=#{ENV['MASTER_KEY']}&number=#{params[:number]}")
-      puts str
-
-      slim :'/stripe/thank-you'
-    else
-      slim :'/error/stripe-fail'
-    end
+    slim :'/stripe/thank-you'
   end
 
   get('/style.css') do
