@@ -1,0 +1,23 @@
+development:
+  clients:
+    default:
+      database: pet-fact_development
+      hosts:
+        - localhost:27017
+      options:
+  options:
+test:
+  clients:
+    default:
+      database: pet-fact_test
+      hosts:
+        - localhost:27017
+      options:
+        read:
+          mode: :primary
+        max_pool_size: 1
+
+production:
+  clients:
+    default:
+      uri: <%= ENV['MONGOLAB_URI'] %>

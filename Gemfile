@@ -5,17 +5,11 @@ ruby '2.3.0'
 # -------- Web Server --------
 # Because no rails
 gem 'sinatra'
-
-# ---- Design and Pretty -----
-# Because Hipster
-gem 'slim'
-# Because Sassy
-gem 'sass'
+gem 'sinatra-contrib'
 
 # -------- Database ----------
 # Because storage
 gem 'mongoid'
 
-# -------- Payment -----------
-# Because Money
-gem 'stripe'
+# -------- SMS Twil ----------
+gem 'twilio-ruby'
