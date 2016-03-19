@@ -15,7 +15,7 @@ class PetFacts < Sinatra::Application
     if params[:number]
       client.account.messages.create(
           :from => ENV['TWIL_ID'],
-          :to => number,
+          :to => params[:number],
           :body => 'Hello Thread'
       )
     else
