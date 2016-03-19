@@ -1,6 +1,7 @@
 class PetFacts < Sinatra::Application
   get '/pet-fact/new' do
     if params[:key] == ENV['MASTER_KEY']
+      @petFact = PetFact.new
       slim :'pet-fact/new'
     else
       'Bad Authentication Key'
@@ -8,8 +9,8 @@ class PetFacts < Sinatra::Application
   end
 
   post '/pet-fact/new' do
-    PetFact = PetFact.create(params[:PetFact])
-    if PetFact.save
+    petFact = PetFact.create(params[:PetFact])
+    if petFact.save
       'success'
     else
       'fail'
