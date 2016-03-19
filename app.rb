@@ -20,6 +20,7 @@ class PetFacts < Sinatra::Application
             :to => params[:number],
             :body => 'Hello Thread'
         )
+        'Success, we think'
       else
         'No Number Provided'
       end
