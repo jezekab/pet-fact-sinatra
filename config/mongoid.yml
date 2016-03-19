@@ -1,11 +1,7 @@
 development:
   clients:
     default:
-      database: pet-fact_development
-      hosts:
-        - localhost:27017
-      options:
-  options:
+      uri: <%= ENV['MONGOLAB_URI'] %>
 test:
   clients:
     default:
