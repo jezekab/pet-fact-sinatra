@@ -103,53 +103,6 @@ class PetFacts < Sinatra::Application
     end
   end
 
-  post '/payment' do
-    puts 'woof'
-
-    @amount = 50
-    puts params[:stripeToken]
-    puts 'meow'
-    puts params[:number]
-    puts 'coco'
-    puts params[:email]
-    puts 'whiskey'
-
-    Stripe::Charge.create(
-        :amount => 50,
-        :currency => "aud",
-        :source => params[:stripeToken], # obtained with Stripe.js
-        :description => "Charge for test@example.com"
-    )
-
-    open("https://www.pet-facts.co/pet-fact?key=#{ENV['MASTER_KEY']}&number=#{params[:number]}")
-
-    "Message Complete"
-
-  end
-
-  post '/payment-turnbull' do
-    puts 'woof'
-
-    @amount = 50
-    puts params[:stripeToken]
-    puts 'meow'
-    puts params[:number]
-    puts 'coco'
-    puts params[:email]
-    puts 'whiskey'
-
-    Stripe::Charge.create(
-        :amount => 50,
-        :currency => "aud",
-        :source => params[:stripeToken], # obtained with Stripe.js
-        :description => "Charge for test@example.com"
-    )
-
-    open("https://www.pet-facts.co/turnbull?key=#{ENV['MASTER_KEY']}&number=#{params[:number]}")
-
-    "Message Complete"
-  end
-
   get '/donate' do
     slim :donate
   end
