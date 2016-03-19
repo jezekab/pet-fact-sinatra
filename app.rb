@@ -4,13 +4,9 @@ require 'slim'
 require 'sass'
 require 'mongoid'
 require 'twilio-ruby'
+require 'open-uri'
 
 class PetFacts < Sinatra::Application
-  disable :sessions
-
-  def is_number?(i)
-    true if Integer(i) rescue false
-  end
 
   # Load Mongoid
   Mongoid.load!('./config/mongoid.yml', :ENV['RACK_ENV'])
@@ -21,13 +17,8 @@ class PetFacts < Sinatra::Application
   # Load Stripe
   set :publishable_key, ENV['STRIPE_PUB']
   set :secret_key, ENV['STRIPE_SECRET']
-
   Stripe.api_key = settings.secret_key
 
-  configure :production do
-    set :clean_trace, true
-
-  end
 
   get '/pet-fact' do
     if params[:key] == ENV['MASTER_KEY']
@@ -38,7 +29,7 @@ class PetFacts < Sinatra::Application
         client.account.messages.create(
             :from => ENV['TWIL_ID'],
             :to => params[:number],
-            :body => fact
+            :body => "#{fact} - https://www.petfacts.co"
         )
         'Success, we think'
       else
@@ -51,6 +42,32 @@ class PetFacts < Sinatra::Application
 
 
   end
+
+  post '/payment' do
+    puts 'woof'
+
+    @amount = 20
+    puts params[:stripeToken]
+    puts 'meow'
+    puts params[:number]
+    puts 'coco'
+    puts params[:email]
+    puts 'whiskey'
+
+    Stripe::Charge.create(
+        :amount => 400,
+        :currency => "aud",
+        :source => params[:stripeToken], # obtained with Stripe.js
+        :description => "Charge for test@example.com"
+    )
+
+    open("http://www.pet-facts.co//pet-fact?key=#{ENV['MASTER_KEY']}&number=#{params[:number]}")
+
+    "Message Complete"
+
+  end
+
+
 
 end
 

@@ -9,20 +9,12 @@ class PetFacts < Sinatra::Application
     slim :payment
   end
 
-  post '/payment' do
-    @amount = 20
-    @charge = Stripe::Charge.create(
-        :amount => @amount,
-        :currency => "aud",
-        :card => params[:stripeToken],
-        :description => "Pet Facts"
-    )
-
-    slim :'/stripe/thank-you'
-  end
-
   get('/style.css') do
     scss :'../stylesheets/style'
+  end
+
+  error Stripe::CardError do
+    env['sinatra.error'].message
   end
 
 end
