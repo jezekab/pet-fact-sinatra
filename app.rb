@@ -19,6 +19,41 @@ class PetFacts < Sinatra::Application
   set :secret_key, ENV['STRIPE_SECRET']
   Stripe.api_key = settings.secret_key
 
+  get '/send-fact' do
+    slim :'send-fact'
+  end
+
+  post '/send-fact' do
+    puts params[:optionsRadios]
+    puts params[:number]
+
+    case params[:optionsRadios]
+      when 1
+        # Animal Facts
+        open("https://www.pet-facts.co/pet-fact?key=#{ENV['MASTER_KEY']}&number=#{params[:number]}")
+
+      when 2
+        # Malcolm Turnbull Quotes
+        open("https://www.pet-facts.co/turnbull?key=#{ENV['MASTER_KEY']}&number=#{params[:number]}")
+
+      when 3
+        # Kim Kardashian Quotes
+        open("https://www.pet-facts.co/kardashian?key=#{ENV['MASTER_KEY']}&number=#{params[:number]}")
+
+      when 4
+        # Trump Quotes
+        open("https://www.pet-facts.co/trump?key=#{ENV['MASTER_KEY']}&number=#{params[:number]}")
+
+      else
+        # Something went wrong... This shouldn't be possible
+        open("https://www.pet-facts.co/pet-fact?key=#{ENV['MASTER_KEY']}&number=#{params[:number]}")
+
+    end
+
+
+    slim :'thank-you'
+  end
+
 
   get '/pet-fact' do
     if params[:key] == ENV['MASTER_KEY']
