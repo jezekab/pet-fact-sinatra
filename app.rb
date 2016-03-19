@@ -14,9 +14,10 @@ class PetFacts < Sinatra::Application
   get '/pet-fact' do
     client.account.messages.create(
         :from => ENV['TWIL_ID'],
-        :to => ENV['PERSONAL'],
-        :body => 'Hello babe.'
+        :to => number,
+        :body => 'Hello Thread'
     )
+
   end
 
 end
