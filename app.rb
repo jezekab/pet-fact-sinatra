@@ -12,15 +12,22 @@ class PetFacts < Sinatra::Application
   client = Twilio::REST::Client.new ENV['TWIL_ACC_SID'], ENV['TWIL_AUTH']
 
   get '/pet-fact' do
-    if params[:number]
-      client.account.messages.create(
-          :from => ENV['TWIL_ID'],
-          :to => params[:number],
-          :body => 'Hello Thread'
-      )
+    if params[:key] == ENV['MASTER_KEY']
+
+      if params[:number]
+        client.account.messages.create(
+            :from => ENV['TWIL_ID'],
+            :to => params[:number],
+            :body => 'Hello Thread'
+        )
+      else
+        'No Number Provided'
+      end
+
     else
-      'No Number Provided'
+      'Bad Authentication Key'
     end
+
 
   end
 

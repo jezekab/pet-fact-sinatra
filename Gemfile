@@ -7,6 +7,9 @@ ruby '2.3.0'
 gem 'sinatra'
 gem 'sinatra-contrib'
 
+# ---------- SLIM ------------
+gem 'slim'
+
 # -------- Database ----------
 # Because storage
 gem 'mongoid'
