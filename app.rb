@@ -32,11 +32,11 @@ class PetFacts < Sinatra::Application
     puts params[:number]
 
     case params[:optionsRadios]
-      when 1
+      when 'animal'
         # Animal Facts
         open("https://www.pet-facts.co/pet-fact?key=#{ENV['MASTER_KEY']}&number=#{params[:number]}")
 
-      when 2
+      when 'turnbull'
         # Malcolm Turnbull Quotes
         open("https://www.pet-facts.co/turnbull?key=#{ENV['MASTER_KEY']}&number=#{params[:number]}")
 
@@ -121,7 +121,7 @@ class PetFacts < Sinatra::Application
 
       slim :'thank-you'
     else
-      'something fucked up'
+      'something went wrong up'
     end
   end
 
