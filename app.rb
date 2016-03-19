@@ -12,6 +12,10 @@ class PetFacts < Sinatra::Application
     true if Float(i) rescue false
   end
 
+  configure do
+    
+  end
+
   # Load Mongoid
   Mongoid.load!('./config/mongoid.yml', :ENV['RACK_ENV'])
 
