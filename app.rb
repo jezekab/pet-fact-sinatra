@@ -29,7 +29,7 @@ class PetFacts < Sinatra::Application
         client.account.messages.create(
             :from => ENV['TWIL_ID'],
             :to => params[:number],
-            :body => "#{fact} - https://www.petfacts.co"
+            :body => "#{fact} - https://www.pet-facts.co"
         )
         'Success, we think'
       else
