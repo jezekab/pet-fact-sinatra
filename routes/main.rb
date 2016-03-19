@@ -1,4 +1,4 @@
-class CodeNetwork < Sinatra::Application
+class PetFacts < Sinatra::Application
   get '/pet-fact' do
     if params[:key] == ENV['MASTER_KEY']
 
