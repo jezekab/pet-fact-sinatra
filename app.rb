@@ -46,7 +46,7 @@ class PetFacts < Sinatra::Application
   post '/payment' do
     puts 'woof'
 
-    @amount = 20
+    @amount = 50
     puts params[:stripeToken]
     puts 'meow'
     puts params[:number]
@@ -55,7 +55,7 @@ class PetFacts < Sinatra::Application
     puts 'whiskey'
 
     Stripe::Charge.create(
-        :amount => 20,
+        :amount => 50,
         :currency => "aud",
         :source => params[:stripeToken], # obtained with Stripe.js
         :description => "Charge for test@example.com"
