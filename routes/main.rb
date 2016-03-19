@@ -9,6 +9,10 @@ class PetFacts < Sinatra::Application
     slim :payment
   end
 
+  get '/payment-turnbull' do
+    slim :'payment-turnbull'
+  end
+
   get('/style.css') do
     scss :'../stylesheets/style'
   end

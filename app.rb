@@ -43,6 +43,27 @@ class PetFacts < Sinatra::Application
 
   end
 
+  get '/turnbull' do
+    if params[:key] == ENV['MASTER_KEY']
+
+      if params[:number]
+        fact = Facts.random_turnbull_fact
+        puts fact
+        client.account.messages.create(
+            :from => ENV['TWIL_ID'],
+            :to => params[:number],
+            :body => "#{fact} - https://www.pet-facts.co"
+        )
+        'Success, we think'
+      else
+        'No Number Provided'
+      end
+
+    else
+      'Bad Authentication Key'
+    end
+  end
+
   post '/payment' do
     puts 'woof'
 
@@ -61,10 +82,33 @@ class PetFacts < Sinatra::Application
         :description => "Charge for test@example.com"
     )
 
-    open("https://www.pet-facts.co//pet-fact?key=#{ENV['MASTER_KEY']}&number=#{params[:number]}")
+    open("https://www.pet-facts.co/pet-fact?key=#{ENV['MASTER_KEY']}&number=#{params[:number]}")
 
     "Message Complete"
 
+  end
+
+  post '/payment-turnbull' do
+    puts 'woof'
+
+    @amount = 50
+    puts params[:stripeToken]
+    puts 'meow'
+    puts params[:number]
+    puts 'coco'
+    puts params[:email]
+    puts 'whiskey'
+
+    Stripe::Charge.create(
+        :amount => 50,
+        :currency => "aud",
+        :source => params[:stripeToken], # obtained with Stripe.js
+        :description => "Charge for test@example.com"
+    )
+
+    open("https://www.pet-facts.co/turnbull?key=#{ENV['MASTER_KEY']}&number=#{params[:number]}")
+
+    "Message Complete"
   end
 
 
