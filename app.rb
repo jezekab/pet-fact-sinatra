@@ -8,6 +8,10 @@ require 'open-uri'
 
 class PetFacts < Sinatra::Application
 
+  def is_number?(i)
+    true if Float(i) rescue false
+  end
+
   # Load Mongoid
   Mongoid.load!('./config/mongoid.yml', :ENV['RACK_ENV'])
 
@@ -144,6 +148,28 @@ class PetFacts < Sinatra::Application
     open("https://www.pet-facts.co/turnbull?key=#{ENV['MASTER_KEY']}&number=#{params[:number]}")
 
     "Message Complete"
+  end
+
+  get '/donate' do
+    slim :donate
+  end
+
+  post '/donate' do
+    if is_number?(params[:amount].to_f)
+
+      @amount = ((params[:amount].to_f)*100).to_i
+
+      Stripe::Charge.create(
+          :amount => @amount,
+          :currency => "aud",
+          :source => params[:stripeToken], # obtained with Stripe.js
+          :description => "Charge for test@example.com"
+      )
+
+      slim :'thank-you'
+    else
+      'something fucked up'
+    end
   end
 
 
