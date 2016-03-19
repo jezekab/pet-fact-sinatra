@@ -13,9 +13,14 @@ GEM
     backports (3.6.8)
     bson (4.0.4)
     builder (3.2.2)
+    domain_name (0.5.20160216)
+      unf (>= 0.0.5, < 1.0.0)
+    http-cookie (1.0.2)
+      domain_name (~> 0.5)
     i18n (0.7.0)
     json (1.8.3)
     jwt (1.5.3)
+    mime-types (2.99.1)
     minitest (5.8.4)
     mongo (2.2.4)
       bson (~> 4.0)
@@ -25,12 +30,17 @@ GEM
       origin (~> 2.2)
       tzinfo (>= 0.3.37)
     multi_json (1.11.2)
+    netrc (0.11.0)
     origin (2.2.0)
     rack (1.6.4)
     rack-protection (1.5.3)
       rack
     rack-test (0.6.3)
       rack (>= 1.0)
+    rest-client (1.8.0)
+      http-cookie (>= 1.0.2, < 2.0)
+      mime-types (>= 1.16, < 3.0)
+      netrc (~> 0.7)
     sinatra (1.4.7)
       rack (~> 1.5)
       rack-protection (~> 1.4)
@@ -45,6 +55,9 @@ GEM
     slim (3.0.6)
       temple (~> 0.7.3)
       tilt (>= 1.3.3, < 2.1)
+    stripe (1.36.0)
+      json (~> 1.8.1)
+      rest-client (~> 1.4)
     temple (0.7.6)
     thread_safe (0.3.5)
     tilt (2.0.2)
@@ -54,6 +67,9 @@ GEM
       multi_json (>= 1.3.0)
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
+    unf (0.1.4)
+      unf_ext
+    unf_ext (0.0.7.2)
 
 PLATFORMS
   ruby
@@ -63,6 +79,7 @@ DEPENDENCIES
   sinatra
   sinatra-contrib
   slim
+  stripe
   twilio-ruby
 
 BUNDLED WITH

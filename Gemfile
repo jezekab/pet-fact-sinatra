@@ -16,3 +16,6 @@ gem 'mongoid'
 
 # -------- SMS Twil ----------
 gem 'twilio-ruby'
+
+# -------- Money -------------
+gem 'stripe'
