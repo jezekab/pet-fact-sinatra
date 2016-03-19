@@ -25,3 +25,6 @@ class PetFacts < Sinatra::Application
   end
 
 end
+
+require_relative 'models/_init'
+require_relative 'views/_init'
